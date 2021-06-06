@@ -8,7 +8,10 @@ display.set_caption('Directions')
 screen = display.set_mode((0, 0), pygame.FULLSCREEN)
 
 board = image.load('assets/board.png')
-board = pygame.transform.scale(board, (720, 720))
+screen.blit(pygame.transform.scale(board, screen.get_size()), (0, 0))
+
+#board = pygame.transform.scale(board, (720, 720))
+#board_rect = board.get_rect(center=(1024,560))
 
 running = True
 
@@ -23,5 +26,5 @@ while running:
             if e.key == pygame.K_ESCAPE:
                 running = False
 
-    screen.blit(board, [0, 0])
+    #screen.blit(board, board_rect)
     display.flip()
