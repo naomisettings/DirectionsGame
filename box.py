@@ -9,7 +9,7 @@ box_middle = [a for a in gc.ASSET_FILES_MIDDLE]
 box_center = [a for a in gc.ASSET_FILES_CENTER]
 box_start_end = [a for a in gc.ASSET_FILES_START_END]
 
-class Box:
+class Box(object):
     def __init__(self, index):
 
         self.index = index
@@ -55,3 +55,8 @@ class Box:
 
         self.image = transform.scale(self.image, (gc.IMAGE_SIZE - 2 * gc.MARGIN, gc.IMAGE_SIZE - 2 * gc.MARGIN))
 
+    def row(self, r): 
+         self._row = r 
+
+    def col(self, c): 
+         self._col = c 

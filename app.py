@@ -22,7 +22,7 @@ screen.blit(pygame.transform.scale(board, screen.get_size()), (0, 0))
 #board_rect = board.get_rect(center=(1024,560))
 
 tiles = [Box(i) for i in range(0, gc.NUM_TILES_TOTAL)]
-
+#tiles = dict((Box(i), 0) for i in range(0, gc.NUM_TILES_TOTAL))
 running = True
 
 while running:
@@ -39,12 +39,31 @@ while running:
         if e.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             row, col, index = find_index_from_xy(mouse_x, mouse_y)
-
+            moved = False
+            for i, tile in enumerate(tiles):
+                if (not(tile.row == 0 and tile.col == 4) and not(tile.row ==  4 and tile.col == 0)):
+                    if (tile.row == 0 and tile.col != 3 and moved == False):   
+                        tile.col += 1
+                        moved = True
+                    elif (tile.col == 3 and tile.row == 0 and moved == False):
+                        tile.row += 1 
+                        tile.col += 1
+                        moved = True
+                    if (tile.col == 4 and tile.row != 4 and moved == False):
+                        tile.row += 1
+                        moved = True
+                    elif(tile.row == 4 and tile.col != 0 and moved == False):
+                        tile.col -= 1
+                        tile.row -= 1
+                moved = False    
+            for i, tile in enumerate(tiles):
+                screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
     #Display boxes
     #screen.fill((255, 255, 255))
     screen.blit(board, [0, 0])
   
     for i, tile in enumerate(tiles):
         screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
-        
+    
     display.flip()
+
