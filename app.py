@@ -64,6 +64,6 @@ while running:
   
     for i, tile in enumerate(tiles):
         screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
-    
+    print('x')
     display.flip()
 
