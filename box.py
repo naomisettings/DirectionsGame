@@ -8,36 +8,34 @@ box_border = [a for a in gc.ASSET_FILES_BORDER]
 box_middle = [a for a in gc.ASSET_FILES_MIDDLE]
 box_center = [a for a in gc.ASSET_FILES_CENTER]
 box_start_end = [a for a in gc.ASSET_FILES_START_END]
+print("e ", box_border)
+print("m ", box_middle)
 
 class Box(object):
-    def __init__(self, index):
+    
+    def __init__(self, index, count_border, count_middle):
 
         self.index = index
-        
         self.row = index // gc.NUM_TILES_SIDE
         self.col = index % gc.NUM_TILES_SIDE
-        
         name = ''
-        if (self.row == 4 and self.col == 0):
+        if (index == 20):
             name = '0.png'
-        elif (self.row == 0 and self.col == 4):
+        elif (index == 4):
             name = '1.png'
-        elif (self.row == 0 or self.col == 0 or self.row == 4 or self.col == 4):
-            name = random.sample(box_border, gc.NUM_TILES_BORDER)[0]
-        elif (self.row == 1 or self.col == 1 or self.row == 3 or self.col == 3):
-            name = random.sample(box_middle, gc.NUM_TILES_MIDDLE)[0] 
+        elif (index == 0 or index == 1 or index== 2 or index == 3 or index == 5 or index == 9 or index == 10 or index == 14 or index == 15 or index == 19 or index == 21 or index == 22 or index == 23 or index == 24):
+            name = box_border[count_border]
+        elif ((index >= 6 and index <= 9) or (index >= 11 and index <= 14)):
+            name = box_middle[count_middle]
+
         else:
             name = box_center[0]
 
         self.name = name
-
         self.image_path_border = os.path.join(gc.ASSET_DIR_BORDER, self.name)
         self.image_path_middle = os.path.join(gc.ASSET_DIR_MIDDLE, self.name)
         self.image_path_center = os.path.join(gc.ASSET_DIR_CENTER, self.name)
         self.image_path_start_end = os.path.join(gc.ASSET_DIR_START_END, self.name)
-
-
-        self.skip = False
         
         if (self.name in box_start_end):
             self.image_start_end = image.load(self.image_path_start_end)
@@ -49,7 +47,6 @@ class Box(object):
             self.image_middle = image.load(self.image_path_middle)
             self.image = self.image_middle
         else:
-            print(self.image_path_center)
             self.image_center = image.load(self.image_path_center)
             self.image = self.image_center
 

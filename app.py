@@ -20,8 +20,19 @@ screen.blit(pygame.transform.scale(board, screen.get_size()), (0, 0))
 
 #board = pygame.transform.scale(board, (720, 720))
 #board_rect = board.get_rect(center=(1024,560))
+tiles = []
+count_border = 0
+count_middle = 0
 
-tiles = [Box(i) for i in range(0, gc.NUM_TILES_TOTAL)]
+for i in range(0, gc.NUM_TILES_TOTAL):
+    tiles.append(Box(i, count_border, count_middle))
+    if (i == 0 or i == 1 or i== 2 or i == 3 or i == 5 or i == 9 or i == 10 or i == 14 or i == 15 or i == 19 or i == 21 or i == 22 or i == 23 or i == 24):
+        count_border += 1
+    elif ((i >= 6 and i <= 9) or (i >= 11 and i <= 14)):
+        count_middle += 1
+   
+
+    print(tiles[i].name)
 #tiles = dict((Box(i), 0) for i in range(0, gc.NUM_TILES_TOTAL))
 running = True
 
@@ -64,6 +75,5 @@ while running:
   
     for i, tile in enumerate(tiles):
         screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
-    print('x')
     display.flip()
 

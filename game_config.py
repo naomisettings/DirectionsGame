@@ -3,8 +3,8 @@ import os
 IMAGE_SIZE = 122
 MARGIN = 6
 
-NUM_TILES_BORDER = 9
-NUM_TILES_MIDDLE = 5
+NUM_TILES_BORDER = 14
+NUM_TILES_MIDDLE = 8
 NUM_TILES_CENTER = 1
 
 NUM_TILES_SIDE = 5
@@ -22,8 +22,8 @@ ASSET_FILES_CENTER = [x for x in os.listdir(ASSET_DIR_CENTER)]
 ASSET_FILES_START_END = [x for x in os.listdir(ASSET_DIR_START_END)]
 
 
-assert len(ASSET_FILES_BORDER) == 9
-assert len(ASSET_FILES_MIDDLE) == 5
+assert len(ASSET_FILES_BORDER) == 14
+assert len(ASSET_FILES_MIDDLE) == 8
 assert len(ASSET_FILES_CENTER) == 1
 assert len(ASSET_FILES_START_END) == 2
 
