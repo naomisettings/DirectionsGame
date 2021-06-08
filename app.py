@@ -1,9 +1,15 @@
 import pygame
-import game.game_config as gc
-from game.box import Box
-
+import game_config as gc
+from box import Box
 
 from pygame import display, event, image
+
+
+def find_index_from_xy(x, y):
+    row = y // gc.IMAGE_SIZE
+    col = x // gc.IMAGE_SIZE
+    index = row * gc.NUM_TILES_SIDE + col
+    return row, col, index
 
 pygame.init()
 display.set_caption('Directions')
@@ -16,10 +22,6 @@ screen.blit(pygame.transform.scale(board, screen.get_size()), (0, 0))
 #board_rect = board.get_rect(center=(1024,560))
 
 tiles = [Box(i) for i in range(0, gc.NUM_TILES_TOTAL)]
-x = 0
-#for (x in range(gc.NUM_TILES_TOTAL))
-
-
 
 running = True
 
@@ -34,15 +36,15 @@ while running:
             if e.key == pygame.K_ESCAPE:
                 running = False
 
+        if e.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            row, col, index = find_index_from_xy(mouse_x, mouse_y)
 
-    # Display boxes
-    screen.fill((255, 255, 255))
-"""
+    #Display boxes
+    #screen.fill((255, 255, 255))
+    screen.blit(board, [0, 0])
+  
     for i, tile in enumerate(tiles):
-        current_image = tile.image if i in current_images_displayed else tile.box
-        if not tile.skip:
-            screen.blit(current_image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN, tile.row * gc.IMAGE_SIZE + gc.MARGIN))
-        else:
-            total_skipped += 1
+        screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
+        
     display.flip()
-"""
