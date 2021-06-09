@@ -23,30 +23,28 @@ class Box(object):
             name = '0.png'
         elif (index == 4):
             name = '1.png'
-        elif (index == 0 or index == 1 or index== 2 or index == 3 or index == 5 or index == 9 or index == 10 or index == 14 or index == 15 or index == 19 or index == 21 or index == 22 or index == 23 or index == 24):
+        elif index == 0 or index == 1 or index== 2 or index == 3 or index == 5 or index == 9 or index == 10 or index == 14 or index == 15 or index == 19 or index == 21 or index == 22 or index == 23 or index == 24:
             name = box_border[count_border]
-        elif ((index >= 6 and index <= 9) or (index >= 11 and index <= 14)):
+        elif index == 6 or index == 7 or index == 8 or index == 9 or index == 11  or index == 13 or index == 16 or index == 17 or index == 18:
             name = box_middle[count_middle]
-
-        else:
+        elif index == 12:
             name = box_center[0]
-
         self.name = name
         self.image_path_border = os.path.join(gc.ASSET_DIR_BORDER, self.name)
         self.image_path_middle = os.path.join(gc.ASSET_DIR_MIDDLE, self.name)
         self.image_path_center = os.path.join(gc.ASSET_DIR_CENTER, self.name)
         self.image_path_start_end = os.path.join(gc.ASSET_DIR_START_END, self.name)
         
-        if (self.name in box_start_end):
+        if self.name in box_start_end:
             self.image_start_end = image.load(self.image_path_start_end)
             self.image = self.image_start_end
-        elif (self.name in box_border):
+        elif self.name in box_border:
             self.image_border = image.load(self.image_path_border)
             self.image = self.image_border
-        elif (self.name in box_middle):
+        elif self.name in box_middle:
             self.image_middle = image.load(self.image_path_middle)
             self.image = self.image_middle
-        else:
+        elif self.name in box_center:
             self.image_center = image.load(self.image_path_center)
             self.image = self.image_center
 

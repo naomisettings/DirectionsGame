@@ -26,11 +26,10 @@ count_middle = 0
 
 for i in range(0, gc.NUM_TILES_TOTAL):
     tiles.append(Box(i, count_border, count_middle))
-    if (i == 0 or i == 1 or i== 2 or i == 3 or i == 5 or i == 9 or i == 10 or i == 14 or i == 15 or i == 19 or i == 21 or i == 22 or i == 23 or i == 24):
+    if i == 0 or i == 1 or i== 2 or i == 3 or i == 5 or i == 9 or i == 10 or i == 14 or i == 15 or i == 19 or i == 21 or i == 22 or i == 23 or i == 24:
         count_border += 1
-    elif ((i >= 6 and i <= 9) or (i >= 11 and i <= 14)):
+    elif i == 6 or i == 7 or i== 8 or i == 9 or i == 11 or i == 13 or i == 16 or i == 17 or i == 18:
         count_middle += 1
-   
 
     print(tiles[i].name)
 #tiles = dict((Box(i), 0) for i in range(0, gc.NUM_TILES_TOTAL))
@@ -53,19 +52,23 @@ while running:
             moved = False
             for i, tile in enumerate(tiles):
                 if (not(tile.row == 0 and tile.col == 4) and not(tile.row ==  4 and tile.col == 0)):
-                    if (tile.row == 0 and tile.col != 3 and moved == False):   
+                    if tile.row == 0 and tile.col != 3 and moved == False:   
                         tile.col += 1
                         moved = True
-                    elif (tile.col == 3 and tile.row == 0 and moved == False):
+                    elif tile.col == 4 and tile.row != 0 and tile.row != 4 and moved == False:
                         tile.row += 1 
-                        tile.col += 1
                         moved = True
-                    if (tile.col == 4 and tile.row != 4 and moved == False):
-                        tile.row += 1
-                        moved = True
-                    elif(tile.row == 4 and tile.col != 0 and moved == False):
+                    elif tile.row == 4 and tile.col > 1 and moved == False:
                         tile.col -= 1
+                        moved = True
+                    elif tile.col == 0 and tile.row != 4 and tile.row != 0 and moved == False:
                         tile.row -= 1
+                    elif tile.row == 0 and tile.col == 3:
+                        tile.row = 1
+                        tile.col = 4
+                    elif tile.row == 4 and tile.col == 1:
+                        tile.row = 3
+                        tile.col = 0
                 moved = False    
             for i, tile in enumerate(tiles):
                 screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE + gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
