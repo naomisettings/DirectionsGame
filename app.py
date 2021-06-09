@@ -80,7 +80,7 @@ def rotation_of_boxes(tiles):
             if tile.col == 3 and tile.row == 1:
                 tile.image = transform.rotate(tile.image, 90)
             """ 
-
+            print('test')
             #Rotation ownself center
             if tile.row == 2 and tile.col == 2:
                 tile.image = transform.rotate(tile.image, 270)
