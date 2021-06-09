@@ -1,6 +1,7 @@
 import pygame
 import game_config as gc
 from box import Box
+import random
 
 from pygame import display, event, image, transform
 
@@ -78,11 +79,12 @@ def rotation_of_boxes(tiles):
 
             if tile.col == 3 and tile.row == 1:
                 tile.image = transform.rotate(tile.image, 90)
+            """ 
 
             #Rotation ownself center
             if tile.row == 2 and tile.col == 2:
                 tile.image = transform.rotate(tile.image, 270)
-            """
+            
         moved_border = False
         moved_middle = False
 pygame.init()

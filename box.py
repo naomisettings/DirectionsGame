@@ -9,6 +9,9 @@ box_middle = [a for a in gc.ASSET_FILES_MIDDLE]
 box_center = [a for a in gc.ASSET_FILES_CENTER]
 box_start_end = [a for a in gc.ASSET_FILES_START_END]
 
+random.shuffle(box_border)
+random.shuffle(box_middle)
+
 class Box(object):
     
     def __init__(self, index, count_border, count_middle):
@@ -63,6 +66,9 @@ class Box(object):
                 elif self.col == 4:
                     self.image = transform.rotate(self.image, 90)
 
+        if self.name in box_center:
+            rotation_mode_center = [0, 90, 180, 270]
+            self.image = transform.rotate(self.image, rotation_mode_center[random.randrange(0, 4)])
     def row(self, r): 
          self._row = r 
 
