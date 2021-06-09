@@ -8,16 +8,17 @@ box_border = [a for a in gc.ASSET_FILES_BORDER]
 box_middle = [a for a in gc.ASSET_FILES_MIDDLE]
 box_center = [a for a in gc.ASSET_FILES_CENTER]
 box_start_end = [a for a in gc.ASSET_FILES_START_END]
-print("e ", box_border)
-print("m ", box_middle)
 
 class Box(object):
     
     def __init__(self, index, count_border, count_middle):
 
+        self.first_time = True
+
         self.index = index
         self.row = index // gc.NUM_TILES_SIDE
         self.col = index % gc.NUM_TILES_SIDE
+
         name = ''
         if (index == 20):
             name = '0.png'
@@ -34,7 +35,7 @@ class Box(object):
         self.image_path_middle = os.path.join(gc.ASSET_DIR_MIDDLE, self.name)
         self.image_path_center = os.path.join(gc.ASSET_DIR_CENTER, self.name)
         self.image_path_start_end = os.path.join(gc.ASSET_DIR_START_END, self.name)
-        
+
         if self.name in box_start_end:
             self.image_start_end = image.load(self.image_path_start_end)
             self.image = self.image_start_end
@@ -50,8 +51,29 @@ class Box(object):
 
         self.image = transform.scale(self.image, (gc.IMAGE_SIZE - 2 * gc.MARGIN, gc.IMAGE_SIZE - 2 * gc.MARGIN))
 
+        #images border in correct position (rotation)
+        if self.name in box_border and self.first_time == True:
+            if self.name != '5.png' and self.name != '52.png':
+                if self.row == 0:
+                    self.image = transform.rotate(self.image, 180)
+                elif self.row == 4:
+                    self.image = transform.rotate(self.image, 0)
+                elif self.col == 0:
+                    self.image = transform.rotate(self.image, 270)
+                elif self.col == 4:
+                    self.image = transform.rotate(self.image, 90)
+
     def row(self, r): 
          self._row = r 
 
     def col(self, c): 
          self._col = c 
+
+    def first_time(self, f): 
+         self._first_time = f 
+
+    def image(self, i): 
+         self._image = i 
+    
+    def image(self): 
+         return self._image
