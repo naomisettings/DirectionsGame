@@ -69,6 +69,8 @@ class Box(object):
         if self.name in box_center:
             rotation_mode_center = [0, 90, 180, 270]
             self.image = transform.rotate(self.image, rotation_mode_center[random.randrange(0, 4)])
+   
+   
     def row(self, r): 
          self._row = r 
 

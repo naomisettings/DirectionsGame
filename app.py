@@ -1,7 +1,7 @@
 import pygame
 import game_config as gc
 from box import Box
-import random
+from piece import Piece
 
 from pygame import display, event, image, transform
 
@@ -80,7 +80,6 @@ def rotation_of_boxes(tiles):
             if tile.col == 3 and tile.row == 1:
                 tile.image = transform.rotate(tile.image, 90)
             """ 
-            print('test')
             #Rotation ownself center
             if tile.row == 2 and tile.col == 2:
                 tile.image = transform.rotate(tile.image, 270)
@@ -99,6 +98,11 @@ screen.blit(pygame.transform.scale(board, screen.get_size()), (0, 0))
 tiles = []
 count_border = 0
 count_middle = 0
+
+piece = Piece(4, 0)
+
+
+
 
 for i in range(0, gc.NUM_TILES_TOTAL):
     tiles.append(Box(i, count_border, count_middle))
@@ -125,6 +129,8 @@ while running:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             row, col, index = find_index_from_xy(mouse_x, mouse_y)
 
+            
+
             rotation_of_boxes(tiles)
             for i, tile in enumerate(tiles):
                 screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE +
@@ -136,4 +142,6 @@ while running:
     for i, tile in enumerate(tiles):
         screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE +
                     gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
+
+    screen.blit(piece.image, (0, 0))
     display.flip()
