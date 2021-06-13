@@ -129,8 +129,6 @@ while running:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             row, col, index = find_index_from_xy(mouse_x, mouse_y)
 
-            
-
             rotation_of_boxes(tiles)
             for i, tile in enumerate(tiles):
                 screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE +
@@ -143,5 +141,5 @@ while running:
                     gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
 
     # Display piece
-    screen.blit(piece.image, (0, 0))
+    screen.blit(piece.image, (655, 705))
     display.flip()
