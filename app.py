@@ -141,5 +141,5 @@ while running:
                     gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
 
     # Display piece
-    screen.blit(piece.image, (655, 705))
+    screen.blit(piece.image, (580, 645))
     display.flip()

@@ -18,6 +18,6 @@ class Piece(object):
         self.image_piece = image.load(self.image_path_piece)
         self.image = self.image_piece
 
-        self.image = transform.scale(self.image, (gc.PIECE_SIZE - 1 * gc.MARGIN_PIECE, gc.PIECE_SIZE - 2 * gc.MARGIN_PIECE))
+        self.image = transform.scale(self.image, (gc.PIECE_SIZE_HEIGH - 1 * gc.MARGIN_PIECE, gc.PIECE_SIZE_WITH - 2 * gc.MARGIN_PIECE))
 
 
