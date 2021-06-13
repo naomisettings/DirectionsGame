@@ -46,9 +46,9 @@ def rotation_of_boxes(tiles):
                     tile.image = transform.rotate(tile.image, 270)
             
             if tile.name != '5.png' and  tile.name != '52.png':
-                if tile.row == 0 and tile.col == 0:
+                if tile.row == 0 and tile.col == 1:
                     tile.image = transform.rotate(tile.image, 270)
-                elif tile.row == 4 and tile.col == 4:
+                elif tile.row == 4 and tile.col == 3:
                     tile.image = transform.rotate(tile.image, 270)
 
             #Rotation middle
@@ -135,13 +135,13 @@ while running:
             for i, tile in enumerate(tiles):
                 screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE +
                             gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
+    
     # Display boxes
-    #screen.fill((255, 255, 255))
     screen.blit(board, [0, 0])
-
     for i, tile in enumerate(tiles):
         screen.blit(tile.image, (tile.col * gc.IMAGE_SIZE +
                     gc.MARGIN + 620, tile.row * gc.IMAGE_SIZE + gc.MARGIN + 165))
 
+    # Display piece
     screen.blit(piece.image, (0, 0))
     display.flip()
